@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <title>Controle Bibliotecário</title>
+        <script language="Javascript">
+            function validacaoEmail(field) {
+                usuario = field.value.substring(0, field.value.indexOf("@"));
+                dominio = field.value.substring(field.value.indexOf("@")+ 1, field.value.length);
+                if ((usuario.length >=1) &&
+                    (dominio.length >=3) && 
+                    (usuario.search("@")==-1) && 
+                    (dominio.search("@")==-1) &&
+                    (usuario.search(" ")==-1) && 
+                    (dominio.search(" ")==-1) &&
+                    (dominio.search(".")!=-1) &&      
+                    (dominio.indexOf(".") >=1)&& 
+                    (dominio.lastIndexOf(".") < dominio.length - 1)) {
+                    document.getElementById("msgemail").innerHTML="E-mail válido";
+                    alert("email valido");
+                }
+                else{
+                    document.getElementById("msgemail").innerHTML="<font color='red'>Email inválido </font>";
+                    alert("E-mail invalido");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container register">
+            <h1>SISTEMA DE CONTROLE BIBLIOTECÁRIO</h1>
+            <h2 class="modulo">MÓDULO DE CADASTROS</h2>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active text-align form-new border" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h2 id="cadastro">Cadastro de Cliente</h2>
+                            <div class="row register-form">
+                                <div class="col-md-12">
+                                    <form action="form_cadastro.php" method="POST" name="f1" autocomplete="off">
+                                        <div class="form-group">
+                                            RG: <input type="text" name="cRG" required>
+                                        </div>
+                                        <div class="form-group">
+                                                Nome: <input type="text" name="cNome" maxlength="40" placeholder="Digite seu nome." size="60">
+                                        </div>
+                                        <div class="form-group">
+                                            E-mail: <input type="text" name="cEmail" onblur="validacaoEmail(f1.cEmail)"  maxlength="60" size='60'>
+                                            <div id="msgemail"></div>
+                                        </div>
+                                        <div class="form-group">
+                                            Nascimento: <input type="date" name="cNascimento">
+                                        </div>
+                                        <div class="form-group">
+                                            <table>
+                                                <tr> 
+                                                    <td>Estado: </td>
+                                                    <td>
+                                                        <input type="radio" name="cEstado" value="SP"> SP <br>
+                                                        <input type="radio" name="cEstado" value="RJ"> RJ <br>
+                                                        <input type="radio" name="cEstado" value="MG"> MG <br>
+                                                        <input type="radio" name="cEstado" value="ES"> ES
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                        <div class="form-group">
+                                            Admissão: <input type="date" name="cAdmissao" min="1990-01-01" max="2015-01-01">
+                                        </div>
+                                        <div class="form-group">
+                                            Telefone: <input type="text" name="cTelefone" pattern="\+[0-9]{2} \([0-9]{2}\) [0-9]{5}-[0-9]{4}" title="+99 (99) 99999-9999">
+                                        </div>
+                                        <div class="form-group">
+                                            Departamento: <input type="text" name="cDepartamento" value="DCC" disabled> 
+                                        </div>
+                                        <div class="form-group">
+                                            Salário: <input type="decimal" name="cSalario" pattern="([0-9]{1,3}\.)?[0-9]{1,3},[0-9]{2}" title="">
+                                        </div>
+                                        <div class="form-group">
+                                            Curso: <input list="curso" name="cCurso">
+                                            <datalist id="curso">
+                                                <option value="Ciência da Computação">
+                                                <option value="Sistemas de Informação">
+                                                <option value="Engenharia de Software">
+                                                <option value="Engenharia da Computação">
+                                            </datalist>
+                                        </div>
+                                        <div class="form-group">
+                                            Marca de veículo: <select name="cVeiculo">
+                                                <option value="volksvagem">VolksVagem</option>
+                                                <option value="fiat">FIAT</option>
+                                                <option value="ford">FORD</option>
+                                                <option value="chevrolet">CHEVROLET</option>
+                                                <option value="gm">GM</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            Placa: <input type="text" name="cPlaca" pattern="[A-Z]{3}-[0-9]{4}" title="AAA-9999">
+                                        </div>
+                                        <div class="form-group">
+                                            Quantidade de livros: <input type="number" name="cQdelivros" min="0" max="6">
+                                        </div>
+                                        <div class="form-group">
+                                            Escolha uma cor de fundo: <input type="color" name="cCorfundo">
+                                        </div>
+                                        <div class="form-group">
+                                            Foto: <input type="file" name="cFoto" multiple="">
+                                        </div>
+                                        <div class="form-group">
+                                            Quantidade de pares de sapatos: <input type="number" name="cQdesapatos" step="2">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" name="LGform1" class="btnContactSubmit" value="ENVIAR" />
+                                            <input type="reset" class="btnContactSubmit" value="LIMPAR">
+		                                    <input type="button" class="btnContactSubmit2" value="ENVIAR PARA NOVA ABA"> 
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
